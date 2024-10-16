@@ -1,6 +1,6 @@
 const express = require("express");
 const approutes = require("./routes/routes");
-const apiroutes = require("./routes/api");
+const { router: apiroutes } = require("./routes/api");
 const cookieParser = require('cookie-parser');
 
 const app = express();

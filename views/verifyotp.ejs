@@ -65,11 +65,6 @@
                     color: red;
                 }
 
-                .greenmessage {
-                    padding: 10px;
-                    color: green;
-                }
-
                 .form-group {
                     display: flex;
                     flex-direction: column;
@@ -83,6 +78,17 @@
                         margin: 10px 0;
                         padding: 10px;
                         width: 100%;
+                        text-align: center;
+                    }
+
+                    label {
+                        text-align: center;
+                    }
+
+                    input[name="email"] {
+                        border: none;
+                        font-weight: bold;
+
                     }
                 }
 
@@ -112,27 +118,22 @@
         </nav>
     </div>
     <div class="content">
-        <form class="login-form" action="/api/register" method="POST">
-            <h1>Register</h1>
+        <form class="login-form" action="/api/verifyotp" method="POST">
+            <h1>2 Factor Authentication</h1>
+            <p>OTP has been sent to your e-mail</p>
             <% if (message) { %>
-                <p class=<%=message==='Registration successful' ? "greenmessage" : "redmessage" %> >
+                <p class="redmessage">
                     <%= message %>
                 </p>
                 <% } %>
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="email" name="email" value="<%=email%>" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="username">E-mail</label>
-                        <input type="text" id="email" name="email" required>
+                        <label for="otp">INPUT YOUR OTP</label>
+                        <input type="text" id="otp" name="otp" required>
                     </div>
-                    <div class="form-group">
-                        <label for="password">password</label>
-                        <input type="password" id="password" name="password" required>
-                        <input type="password" id="repeat-password" name="repeat_password" required>
-                    </div>
-                    <button type="submit">register</button>
+                    <button type="submit">Verify</button>
         </form>
     </div>
     <script></script>

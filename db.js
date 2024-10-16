@@ -1,12 +1,12 @@
-const mysql = require('mysql2');
-require('dotenv').config();
+const bcrypt = require("bcrypt");
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
-});
+const salt = 10;
+const adminHashedPassword = bcrypt.hashSync('admin', salt);
+const userHashedPassword = bcrypt.hashSync('user', salt);
 
-module.exports = db;
+let usersdata = [
+    { id: 1, name: 'Admin', email: 'admin@mail.com', password: adminHashedPassword, role: 'admin' },
+    { id: 2, name: 'User', email: 'user@mail.com', password: userHashedPassword, role: 'user' }
+]
+
+module.exports = usersdata;
